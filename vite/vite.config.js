@@ -13,7 +13,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import liveReload from 'vite-plugin-live-reload'
-import path from 'path'
+import path, {resolve} from 'path'
 
 
 // https://vitejs.dev/config/
@@ -46,7 +46,7 @@ export default defineConfig({
 
     // our entry
     rollupOptions: {
-      input: path.resolve(__dirname, './src/main.js'),
+      input: process.env.NODE_ENV === 'production' ? resolve(__dirname, './src/main.js') : resolve(__dirname, './src/main-dev.js'),
     }
   },
 
